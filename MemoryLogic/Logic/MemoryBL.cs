@@ -38,15 +38,21 @@ namespace MemoryLogic.Logic
             StreamWriter sw = new StreamWriter("dump.txt");
             int bytesRead = 0;
             long lastminAddress = 0;
+            bool IsWow64 = ProcessHelper.IsProcessWow64(processHandle); 
+            
             while (proc_min_address_l < proc_max_address_l)
             {
-                MEMORY_BASIC_INFORMATION memInfo = SystemInfoHelper.GetMemInfo(processHandle, proc_min_address);
+                uint Protect = 1;
+
+                MEMORY_BASIC_INFORMATION64 memInfo ;
+
+                memInfo = IsWow64 ? SystemInfoHelper.GetMemInfo64(processHandle, proc_min_address) : SystemInfoHelper.GetMemInfo32(processHandle, proc_min_address);
                 //if ((memInfo.Protect == PAGE_READ || memInfo.Protect ==  PAGE_READWRITE) && memInfo.State == MEM_COMMIT)
                 if (memInfo.Protect == PAGE_READWRITE && memInfo.State == MEM_COMMIT)
                 {
                     int maxRowSize = 64;
                     byte[] buffer = new byte[(int)memInfo.RegionSize];
-                    ProcessHelper.ReadProcessMemory((int)processHandle, (int)memInfo.BaseAddress, buffer, (int)memInfo.RegionSize, ref bytesRead);
+                    ProcessHelper.ReadProcessMemory(processHandle, new IntPtr((long)memInfo.BaseAddress), buffer, (int)memInfo.RegionSize, ref bytesRead);
                     string resultRow = string.Empty;
                     bool hasValues = false;
                     for (int i = 0; i < (int)memInfo.RegionSize; i++)

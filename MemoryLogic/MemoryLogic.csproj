@@ -44,7 +44,7 @@
     <Compile Include="Logic\MemoryBL.cs" />
     <Compile Include="Logic\ProcessHelper.cs" />
     <Compile Include="Logic\SystemInfoHelper.cs" />
-    <Compile Include="Model\MEMORY_BASIC_INFORMATION64.cs" />
+    <Compile Include="Model\MEMORY_BASIC_INFORMATION.cs" />
     <Compile Include="Model\SYSTEM_INFO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
