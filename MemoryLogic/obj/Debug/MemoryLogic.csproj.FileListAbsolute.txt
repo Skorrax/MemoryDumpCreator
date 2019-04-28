@@ -1,6 +1,0 @@
-C:\Users\stefa\source\repos\MemoryDumpCreator\MemoryLogic\bin\Debug\MemoryLogic.dll
-C:\Users\stefa\source\repos\MemoryDumpCreator\MemoryLogic\bin\Debug\MemoryLogic.pdb
-C:\Users\stefa\source\repos\MemoryDumpCreator\MemoryLogic\obj\Debug\MemoryLogic.csprojAssemblyReference.cache
-C:\Users\stefa\source\repos\MemoryDumpCreator\MemoryLogic\obj\Debug\MemoryLogic.csproj.CoreCompileInputs.cache
-C:\Users\stefa\source\repos\MemoryDumpCreator\MemoryLogic\obj\Debug\MemoryLogic.dll
-C:\Users\stefa\source\repos\MemoryDumpCreator\MemoryLogic\obj\Debug\MemoryLogic.pdb
