@@ -47,12 +47,12 @@ namespace MemoryLogic.Logic
                 MEMORY_BASIC_INFORMATION64 memInfo ;
 
                 memInfo = IsWow64 ? SystemInfoHelper.GetMemInfo64(processHandle, proc_min_address) : SystemInfoHelper.GetMemInfo32(processHandle, proc_min_address);
-                //if ((memInfo.Protect == PAGE_READ || memInfo.Protect ==  PAGE_READWRITE) && memInfo.State == MEM_COMMIT)
-                if (memInfo.Protect == PAGE_READWRITE && memInfo.State == MEM_COMMIT)
+                if ((memInfo.Protect == PAGE_READ || memInfo.Protect ==  PAGE_READWRITE) && memInfo.State == MEM_COMMIT)
+                //if (memInfo.Protect == PAGE_READWRITE && memInfo.State == MEM_COMMIT)
                 {
                     int maxRowSize = 64;
                     byte[] buffer = new byte[(int)memInfo.RegionSize];
-                    ProcessHelper.ReadProcessMemory(processHandle, new IntPtr((long)memInfo.BaseAddress), buffer, (int)memInfo.RegionSize, ref bytesRead);
+                    ProcessHelper.ReadProcessMemory(processHandle, IsWow64 ? new IntPtr((long)memInfo.BaseAddress): new IntPtr((int) memInfo.BaseAddress), buffer, (int)memInfo.RegionSize, ref bytesRead);
                     string resultRow = string.Empty;
                     bool hasValues = false;
                     for (int i = 0; i < (int)memInfo.RegionSize; i++)
@@ -90,7 +90,7 @@ namespace MemoryLogic.Logic
 
                 try
                 {
-                    proc_min_address = new IntPtr((long)proc_min_address_l);
+                    proc_min_address = IsWow64 ? new IntPtr((long)proc_min_address_l) : new IntPtr((int)proc_min_address_l);
                 }
                 catch
                 {
