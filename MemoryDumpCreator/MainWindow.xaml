@@ -1,0 +1,29 @@
+﻿<Window x:Class="MemoryDumpCreator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MemoryDumpCreator"
+        mc:Ignorable="d"
+        SizeToContent="Height"
+        Title="MainWindow" MaxHeight="300" Width="300">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="10"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Label Content="Prozess-Name" Grid.Column="0" Grid.Row="0" Margin="5,0" />
+        <TextBox x:Name="txtProcessName" MinWidth="50" BorderThickness="1" MaxLines="1" Grid.Column="1" Grid.Row="0" Margin="5,0"/>
+        <Label Content="Prozess-Id" Grid.Column="0" Grid.Row="1" Margin="5,0" />
+        <TextBox x:Name="txtProcessId" MinWidth="50" BorderThickness="1" MaxLines="1" Grid.Column="1" Grid.Row="1" Margin="5,0"/>
+
+        <Button x:Name="btnCreateDump" Click="BtnCreateDump_Click" Content="Dump erzeugen" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center" Margin="5,0" />
+        
+    </Grid>
+</Window>
